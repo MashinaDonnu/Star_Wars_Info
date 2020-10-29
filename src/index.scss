@@ -1,0 +1,14 @@
+@import "~bootstrap/scss/bootstrap";
+@import "styles/darkTheme";
+
+.page-header {
+  padding: 5px 20px;
+  h2,p {
+    text-align: center;
+  }
+  h2 {
+    margin: 20px 0;
+  }
+}
+
+

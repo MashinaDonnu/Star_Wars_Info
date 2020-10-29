@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react'
 import {PlanetCard} from "../../components/PlanetCard/PlanetCard"
-import {useFetch} from "../../hooks/useFetch";
+import {useFetch} from "../../hooks/useFetch"
+import {Loader} from "../../components/Loader/Loader"
 
 export const Planets = () => {
     const {loading, error, doFetch} = useFetch()
@@ -14,7 +15,11 @@ export const Planets = () => {
     useEffect(async () => {
         request()
     }, [])
-    console.log('Planets:', planets)
+
+    if (loading || !planets.length) {
+        return <Loader />
+    }
+
     return (
         <div className="planets-page">
             <div className="page-header">

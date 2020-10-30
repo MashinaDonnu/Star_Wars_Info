@@ -1,39 +1,33 @@
 import React, {useCallback, useEffect, useState} from 'react'
-import {PlanetCard} from "../../components/PlanetCard/PlanetCard"
 import {useFetch} from "../../hooks/useFetch"
 import {Loader} from "../../components/Loader/Loader"
 import {PlanetList} from "../../components/PlanetsList/PlanetsList";
+import {Pagination} from "../../components/Pagination/Pagination";
+import {Redirect, Route, Switch} from "react-router-dom";
 
 export const Planets = () => {
-    const {loading, error, doFetch} = useFetch()
-    const [planets, setPlanets] = useState([])
 
-    const request = useCallback(async () => {
-        const data = await doFetch(process.env.REACT_APP_PLANETS_URL)
-        setPlanets(data.results)
-    }, [setPlanets])
+    const [page, setPage] = useState(1)
+    const [pagesCount, setPagesCount] = useState(5) // Количество страниц по умолчанию
 
-    useEffect(async () => {
-        request()
-    }, [])
+    const pageCountHandler = (num) => setPagesCount(num)
 
-    if (loading || !planets.length) {
-        return <Loader />
-    }
 
     return (
         <div className="planets-page">
+            {/*<button className="btn btn-danger">Click</button>*/}
             <div className="page-header">
                 <h2>Planets catalog</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, officia?</p>
+                <Pagination count={pagesCount} currentPage={page}/>
             </div>
             <div className="planets-page__content">
               <div className="row justify-content-between">
-                  {/*<PlanetCard/>*/}
-                  {/*<PlanetCard/>*/}
-                  {/*<PlanetCard/>*/}
-                  {/*<PlanetCard/>*/}
-                  <PlanetList  planets={planets}/>
+                  <Switch>
+                      <Route path="/page/:id" render={props => (<PlanetList {...props} countPages={pageCountHandler}  />)}/>
+                      <Redirect to="/page/1" />
+                  </Switch>
+                  {/*<PlanetList  planets={planets}/>*/}
               </div>
             </div>
         </div>

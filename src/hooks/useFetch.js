@@ -10,7 +10,6 @@ export const useFetch = () => {
         try {
             const response = await axios({url, method, body})
             setLoading(false)
-            console.log('DDD', response)
             return response.data
         } catch (e) {
             setError(e)

@@ -1,4 +1,16 @@
 .planet-card {
   max-width: 350px;
   padding: 0;
+
+  .planet-img {
+    width: 100%;
+  }
+  .list-group {
+    li {
+      font-size: 18px;
+    }
+  }
+  .btn-more-info {
+    font-size: 18px;
+  }
 }

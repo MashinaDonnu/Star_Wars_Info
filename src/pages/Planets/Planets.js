@@ -2,6 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react'
 import {PlanetCard} from "../../components/PlanetCard/PlanetCard"
 import {useFetch} from "../../hooks/useFetch"
 import {Loader} from "../../components/Loader/Loader"
+import {PlanetList} from "../../components/PlanetsList/PlanetsList";
 
 export const Planets = () => {
     const {loading, error, doFetch} = useFetch()
@@ -28,10 +29,11 @@ export const Planets = () => {
             </div>
             <div className="planets-page__content">
               <div className="row justify-content-between">
-                  <PlanetCard/>
-                  <PlanetCard/>
-                  <PlanetCard/>
-                  <PlanetCard/>
+                  {/*<PlanetCard/>*/}
+                  {/*<PlanetCard/>*/}
+                  {/*<PlanetCard/>*/}
+                  {/*<PlanetCard/>*/}
+                  <PlanetList  planets={planets}/>
               </div>
             </div>
         </div>

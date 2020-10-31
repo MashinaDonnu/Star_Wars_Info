@@ -1,33 +1,26 @@
-import React, {useCallback, useEffect, useState} from 'react'
-import {useFetch} from "../../hooks/useFetch"
-import {Loader} from "../../components/Loader/Loader"
-import {PlanetList} from "../../components/PlanetsList/PlanetsList";
-import {Pagination} from "../../components/Pagination/Pagination";
-import {Redirect, Route, Switch} from "react-router-dom";
+import React, {useState} from 'react'
+import {PlanetList} from "../../components/PlanetsList/PlanetsList"
+import {Pagination} from "../../components/Pagination/Pagination"
+import {Route, Switch} from "react-router-dom"
+import './Planets.scss'
 
 export const Planets = () => {
-
-    const [page, setPage] = useState(1)
-    const [pagesCount, setPagesCount] = useState(5) // Количество страниц по умолчанию
-
-    const pageCountHandler = (num) => setPagesCount(num)
-
+    const title = 'planets catalog'
+    const [pagesCount, setPagesCount] = useState(0) // Количество страниц по умолчанию
+    const pageCountHandler = (num) => setPagesCount(num) // количество существующих страниц
 
     return (
         <div className="planets-page">
-            {/*<button className="btn btn-danger">Click</button>*/}
             <div className="page-header">
-                <h2>Planets catalog</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, officia?</p>
-                <Pagination count={pagesCount} currentPage={page}/>
+                <h2>{title.toUpperCase()}</h2>
+                <Pagination count={pagesCount}/>
             </div>
             <div className="planets-page__content">
-              <div className="row justify-content-between">
+              <div className="row cards-wraper">
+                  {/*Страницы с планетами*/}
                   <Switch>
                       <Route path="/page/:id" render={props => (<PlanetList {...props} countPages={pageCountHandler}  />)}/>
-                      <Redirect to="/page/1" />
                   </Switch>
-                  {/*<PlanetList  planets={planets}/>*/}
               </div>
             </div>
         </div>

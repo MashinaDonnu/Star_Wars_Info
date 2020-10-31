@@ -15,7 +15,7 @@ export const useFetch = () => {
             setError(e)
             setLoading(false)
         }
-    })
+    }, [setLoading, setError])
 
     return {loading, error, doFetch}
 }

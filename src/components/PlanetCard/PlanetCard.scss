@@ -1,7 +1,9 @@
 .planet-card {
   max-width: 350px;
   padding: 0;
-
+  .card-link {
+    text-decoration: none;
+  }
   .planet-img {
     width: 100%;
     max-height: 350px;

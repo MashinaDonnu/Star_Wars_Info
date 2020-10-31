@@ -9,7 +9,7 @@ export const Pagination = ({count}) => {
             <ul className="pagination pagination-lg">
                 {paginationItems.map((_, index) => {
                     return  <li className="page-item" key={index}>
-                                <NavLink className="page-link" to={`/page/${index + 1}`}>
+                                <NavLink activeClassName="active-tab" className="page-link" to={`/page/${index + 1}`}>
                                     {index + 1}
                                 </NavLink>
                             </li>
